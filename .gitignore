@@ -127,3 +127,20 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline_0_30
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline_30_50
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline_50_70
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline_100
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline01
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline02
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline03
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline04
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline05
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline06
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline07
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline08
+PIXOR/evaluation/kitti_eval/evaluate_object_3d_offline09
+
+PIXOR/checkpoints
+*.vscode
