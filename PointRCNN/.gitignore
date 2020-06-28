@@ -1,0 +1,13 @@
+*.yml
+*__pycache__*
+*_ext*
+/output
+*.cu.o
+/data
+**/build
+*.png
+**/*.egg-info
+**/dist
+tools/gt_database/
+tools/pseudo_gt_database/
+*.ipynb

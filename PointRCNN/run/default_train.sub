@@ -1,0 +1,36 @@
+#!/bin/bash
+#SBATCH -J train                                   # Job name
+#SBATCH -o logs/train.o%j                           # Name of stdout output file (%j expands to jobId)
+#SBATCH -e logs/train.o%j                       # Name of stderr output file (%j expands to jobId)
+#SBATCH -N 1                                                     # Total number of nodes requested
+#SBATCH -n 4                                                      # Number of cores requested
+#SBATCH --mem=32G                                     # Memory pool for all cores
+#SBATCH -t 120:00:00                                          # Run time (hh:mm:ss)
+#SBATCH --partition=kilian --gres=gpu:1080ti:2           # Which queue it should run on.
+#SBATCH --nodelist=harpo
+
+POINT_STYLE=default
+NUM_GPUS=2
+BATCH_SIZE=$((4 * $NUM_GPUS)) # upto 4 batches per GPU
+
+module rm cuda cudnn
+module add cuda/10.0 cudnn/v7.4-cuda-10.0
+module list
+
+#conda deactivate
+#conda activate 3d
+
+set -e
+
+cd ../tools
+
+# python generate_gt_database.py --class_name 'Car' --split train --points_style "$POINT_STYLE"
+
+# TRAIN RPN
+python train_rcnn_depth.py --gt_database "" --cfg_file cfgs/"$POINT_STYLE".yaml --batch_size 4 --workers 8 --train_mode end2end --ckpt_save_interval 2 --epochs 300 --mgpus
+# --ckpt ../output/rpn/pretrained/ckpt/checkpoint_epoch_200.pth
+# TRAIN RCNN
+# python train_rcnn_depth.py --cfg_file cfgs/"$POINT_STYLE".yaml --batch_size 4 --train_mode rcnn --epochs 70 --ckpt_save_interval 2 --rpn_ckpt ../output/rpn/"$POINT_STYLE"/ckpt/checkpoint_epoch_200.pth --points_style "$POINT_STYLE"
+
+# EVAL
+python eval_rcnn.py --cfg_file cfgs/"$POINT_STYLE".yaml --ckpt ../output/rcnn/"$POINT_STYLE"/ckpt/checkpoint_epoch_70.pth --batch_size 4 --eval_mode rcnn --points_style "$POINT_STYLE"
