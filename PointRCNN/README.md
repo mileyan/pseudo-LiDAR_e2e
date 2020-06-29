@@ -11,7 +11,7 @@ This folder contains code to reproduce the results on end-to-end training of Poi
 * scipy
 
 ## Pre-train models
-Download PRCNN model pretrained on SDN on KITTI [here](https://drive.google.com/file/d/1qlvZPezFsnEWDNNHT9cGpmxIY388k4iS/view?usp=sharing) and pretrained depth model [here](https://drive.google.com/file/d/1aIP1kwhrtlkyV59_9iOl8261ACgGhLup/view?usp=sharing).
+Download PRCNN model pretrained on SDN on KITTI [here](https://drive.google.com/file/d/1aIP1kwhrtlkyV59_9iOl8261ACgGhLup/view?usp=sharing)  and pretrained depth model [here](https://drive.google.com/file/d/1qlvZPezFsnEWDNNHT9cGpmxIY388k4iS/view?usp=sharing).
 
 After downloading model weights, create `depth_network/results/stack_finetune_from_sceneflow` folder and put the depth weight under the folder.
 
